@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text ,Button} from 'react-native';
+import { View, Text, Button} from 'react-native';
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
     return (
         <View>
             <Text>Home screen</Text>
