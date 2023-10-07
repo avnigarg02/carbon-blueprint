@@ -3,16 +3,16 @@ import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Login = ({navigation}) => {
+const House = ({navigation}) => {
     return (
         <View>
-            <Text>Login screen</Text>
+            <Text>House screen</Text>
             <Button
-                title="Go to Home"
+                title="Go back to Home"
                 onPress={() => navigation.navigate('Home')}
             />
         </View>
     );
 };
 
-export default Login;
+export default House;
