@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
 const properties = [
     'Number of People in Household',
@@ -13,8 +13,8 @@ const properties = [
 
 const Inputs = () => {
     return (
-        <ScrollView style={{ padding: 20, backgroundColor: 'lightcyan'}}>
-            <Text style={{ fontSize: 20 }}>
+        <ScrollView indicatorStyle={"navy"} style={houseStyles.scrollContainer}>
+            <Text style={houseStyles.itemText}>
                 {properties.map((property) => (
                     <Text key={property}>
                         {property + '\n'}
@@ -27,13 +27,32 @@ const Inputs = () => {
 
 const HousePage = () => {
     return (
-        <View style={{ flex: 0.8 }}>
-            <Text style={{ padding: 20, fontSize: 30, flexWrap: 'wrap', textAlign: 'center' }}>
+        <View style={houseStyles.container}>
+            <Text style={houseStyles.titleText}>
                 House Properties
             </Text>
             <Inputs />
         </View>
     )
 }
+
+const houseStyles = StyleSheet.create({
+    container: {
+        flex: 0.8
+    },
+    scrollContainer: {
+        padding: 20,
+        backgroundColor: 'lightcyan'
+    },
+    titleText: {
+        padding: 20, 
+        fontSize: 30, 
+        flexWrap: 'wrap', 
+        textAlign: 'center'
+    },
+    itemText: {
+        fontSize: 20
+    }
+  });
 
 export default HousePage;
