@@ -12,11 +12,11 @@ const Header = () => {
 
 const headerStyles = StyleSheet.create({
   container: {
-    flex: 0.15,
+    flex: 0.13,
     backgroundColor: 'lightgreen',
   },
   headerText: {
-    padding: 40, 
+    padding: 50, 
     fontSize: 30, 
     color: 'black', 
     textAlign: 'center'

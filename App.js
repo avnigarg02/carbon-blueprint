@@ -25,12 +25,12 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
 
-      {/* <View style={{ flex: 1, backgroundColor: 'lightblue' }}>
+      {/* <View style={styles.container}>
         <Header />
         <HousePage />
       </View>
 
-      <View style={{ backgroundColor: 'lightblue' }}>
+      <View style={styles.footerContainer}>
         <Footer />
       </View> */}
 
@@ -42,8 +42,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    backgroundColor: 'lightblue',
   },
+  footerContainer: {
+    backgroundColor: 'lightblue'
+  }
 });
