@@ -12,7 +12,7 @@ const Header = () => {
 
 const headerStyles = StyleSheet.create({
   container: {
-    flex: 0.13,
+    height: 100,
     backgroundColor: 'lightgreen',
   },
   headerText: {
