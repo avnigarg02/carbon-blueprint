@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import HousePage from './pages/HousePage';
+import LoginPage from'./pages/LoginPage';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,9 +20,9 @@ export default function App() {
     <>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="House" component={House} />
+          <Stack.Screen name="Login" component={LoginPage} /> 
+          <Stack.Screen name="Home" component={HomePage} />
+          <Stack.Screen name="House" component={HousePage} />
         </Stack.Navigator>
       </NavigationContainer>
 
