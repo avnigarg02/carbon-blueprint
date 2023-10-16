@@ -6,9 +6,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import HousePage from './pages/HousePage';
+import ModifyHousePage from './pages/ModifyHousePage';
 import LoginPage from'./pages/LoginPage';
 import SpendingPage from'./pages/SpendingPage';
+import HousePage from'./pages/HousePage';
+import ThermostatPage from'./pages/ThermostatPage';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -26,8 +29,12 @@ export default function App() {
               title="Info"
             />
           ),}}/>
-          <Stack.Screen name="House" component={HousePage} />
+          <Stack.Screen name="ModifyHouse" component={ModifyHousePage} />
           <Stack.Screen name="Spending" component={SpendingPage}  /> 
+          <Stack.Screen name="House" component={HousePage} />
+          <Stack.Screen name="Thermostat" component={ThermostatPage} />
+
+
         </Stack.Navigator>
       </NavigationContainer>
 
