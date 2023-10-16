@@ -4,22 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const HomePage = ({navigation}) => {
     return (
         <View style={homeStyles.container}>
-            <Button 
-                style={[homeStyles.text1,{paddingTop:80}]}
-                title = "House"
-                onPress={() => navigation.navigate('House')}
-       
-
-            />
-            <Button 
-                style={[homeStyles.text1,{paddingTop:80}]}
-                title = "Spending"
-                onPress={() => navigation.navigate('Spending')}
-       
-
-            />
+           
             <Text style={[homeStyles.text2,{paddingBottom:20}]}>
-                Your total CO2 usage:
+                This is the spending page
             </Text>
         </View>
     )

@@ -9,11 +9,14 @@ import {
     Platform,
     Keyboard,
     StyleSheet,
+    Button
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from '../components/Header';
 
 
-const LoginPage = () => {
+const LoginPage = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -42,10 +45,15 @@ const LoginPage = () => {
                         value={password}
                         secureTextEntry={true}
                     />
-
+                    <Button
+                        title="Submit"
+                        onPress={() => navigation.navigate('Home')}
+                    />      
                 </KeyboardAvoidingView>
+                
             </View>
         </TouchableWithoutFeedback>
+        
     );
 }
 

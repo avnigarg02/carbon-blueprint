@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import Header from '../components/Header';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Inputs = () => {
     const [people, setPeople] = useState('');
@@ -87,7 +88,7 @@ const Inputs = () => {
     )
 }
 
-const HousePage = () => {
+const HousePage = ({navigation}) => {
     return (
         <>
             <View style={houseStyles.container}>
