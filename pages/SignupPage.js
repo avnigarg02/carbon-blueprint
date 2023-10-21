@@ -26,8 +26,9 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
   );
 
 
-const LoginPage = ({ navigation }) => {
+const SignupPage = ({ navigation }) => {
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     return (
@@ -50,6 +51,12 @@ const LoginPage = ({ navigation }) => {
                     />
                     <TextInput
                         style={loginStyles.input}
+                        placeholder='Email'
+                        onChangeText={setEmail}
+                        value={username}
+                    />
+                    <TextInput
+                        style={loginStyles.input}
                         placeholder='Password'
                         onChangeText={setPassword}
                         value={password}
@@ -57,12 +64,9 @@ const LoginPage = ({ navigation }) => {
                     />
                     <Button
                         title="Submit"
-                        onPress={() => navigation.navigate('Home')}
+                        onPress={() => navigation.navigate('Login')}
                     />   
-                    <Button
-                        title="Sign up"
-                        onPress={() => navigation.navigate('Signup')}
-                    />       
+                          
 
 
                 </KeyboardAvoidingView>
@@ -102,4 +106,4 @@ const loginStyles = StyleSheet.create({
     },
 });
 
-export default LoginPage;
+export default SignupPage;

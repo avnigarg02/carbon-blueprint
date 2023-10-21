@@ -92,7 +92,6 @@ const HousePage = ({navigation}) => {
     return (
         <>
             <View style={houseStyles.container}>
-                <Header />
 
                 <KeyboardAvoidingView
                     style={houseStyles.inner}

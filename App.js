@@ -11,6 +11,7 @@ import LoginPage from'./pages/LoginPage';
 import SpendingPage from'./pages/SpendingPage';
 import HousePage from'./pages/HousePage';
 import ThermostatPage from'./pages/ThermostatPage';
+import SignupPage from './pages/SignupPage';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="Spending" component={SpendingPage}  /> 
           <Stack.Screen name="House" component={HousePage} />
           <Stack.Screen name="Thermostat" component={ThermostatPage} />
+          <Stack.Screen name="Signup" component={SignupPage} />
 
 
         </Stack.Navigator>
