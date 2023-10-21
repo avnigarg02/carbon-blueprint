@@ -53,7 +53,7 @@ const SignupPage = ({ navigation }) => {
                         style={loginStyles.input}
                         placeholder='Email'
                         onChangeText={setEmail}
-                        value={username}
+                        value={email}
                     />
                     <TextInput
                         style={loginStyles.input}
