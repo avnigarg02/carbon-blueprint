@@ -41,7 +41,7 @@ const SignupPage = ({ navigation }) => {
                     style={loginStyles.inner}
                 >
                     <Text style={loginStyles.loginText}>
-                        Login
+                        Sign up
                     </Text>
                     <TextInput
                         style={loginStyles.input}

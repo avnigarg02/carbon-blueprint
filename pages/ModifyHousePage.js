@@ -1,92 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform ,TouchableOpacity} from 'react-native';
 import Header from '../components/Header';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import buttonStyles from '../components/Button';
 
-const Inputs = () => {
-    const [people, setPeople] = useState('');
-    const [zip, setZip] = useState('');
-    const [size, setSize] = useState('');
-    const [type, setType] = useState('');
-    const [source, setSource] = useState('');
-    const [consumption, setConsumption] = useState('');
-    const [transportation, setTransportation] = useState('');
-
-    const questions = [
-        {
-            text: 'Number of People in Household',
-            id: 'people',
-            state: people,
-            onChangeState: setPeople,
-            type: 'number-pad',
-        },
-        {
-            text: 'Zip Code',
-            id: 'zip',
-            state: zip,
-            onChangeState: setZip,
-            type: 'number-pad',
-            length: 5,
-        },
-        {
-            text: 'House Size (in square feet)',
-            id: 'size',
-            state: size,
-            onChangeState: setSize,
-            type: 'decimal-pad',
-        },
-        {
-            text: 'Type of Housing',
-            id: 'type',
-            state: type,
-            onChangeState: setType
-        },
-        {
-            text: 'Energy Source',
-            id: 'source',
-            state: source,
-            onChangeState: setSource
-        },
-        {
-            text: 'Energy consupmtion per month',
-            id: 'consumption',
-            state: consumption,
-            onChangeState: setConsumption,
-            type: 'decimal-pad',
-        },
-        {
-            text: 'Primary form of transportation',
-            id: 'transportation',
-            state: transportation,
-            onChangeState: setTransportation
-        },
-    ]
-
-    return (
-        <ScrollView
-            indicatorStyle={"navy"}
-            style={houseStyles.scrollContainer}
-            // keyboardDismissMode='on-drag'
-        >
-            {questions.map((question) => (
-                <>
-                    <Text key={question.id} style={houseStyles.itemText}>
-                        {question.text + '\n'}
-                    </Text>
-                    <TextInput
-                        key={question.id + 'Input'}
-                        value={question.state}
-                        onChangeText={question.onChangeState}
-                        keyboardType={question.type}
-                        maxLength={question.length}
-                        style={houseStyles.input}
-                    />
-                </>
-            ))}
-        </ScrollView>
-    )
-}
 
 const HousePage = ({navigation}) => {
     return (
@@ -100,8 +18,44 @@ const HousePage = ({navigation}) => {
                     <Text style={houseStyles.titleText}>
                         House Properties
                     </Text>
+                    <View style={houseStyles.buttonContainer}>
 
-                    <Inputs />
+                    <TouchableOpacity
+                style={houseStyles.thisButton}
+                title="General info"
+                onPress={() => navigation.navigate('GeneralInfo')}
+                >
+                <Text style={buttonStyles.buttonText}>General info</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                style={houseStyles.thisButton}
+                title="Household vehicles"
+                onPress={() => navigation.navigate('HouseholdVehicles')}
+                >
+                <Text style={buttonStyles.buttonText}>Household vehicles</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                style={houseStyles.thisButton}
+                title="Home energy"
+                onPress={() => navigation.navigate('HomeEnergy')}
+                >
+                <Text style={buttonStyles.buttonText}>Home energy</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                style={houseStyles.thisButton}
+                title="Waste"
+                onPress={() => navigation.navigate('Waste')}
+                >
+                <Text style={buttonStyles.buttonText}>Waste</Text>
+                </TouchableOpacity>
+                </View>                   
+                                    
+
+
+
 
                 </KeyboardAvoidingView>
 
@@ -140,7 +94,21 @@ const houseStyles = StyleSheet.create({
         fontSize: 16,
         borderColor: 'black',
         backgroundColor: 'azure',
-    }
+    },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'space-evenly', // Evenly space items vertically
+        alignItems: 'center', // Center items horizontally
+    },
+    thisButton: {
+        width: 250,
+        backgroundColor: 'lightgreen',
+        padding: 20,
+        marginVertical: -100, // Reduce the vertical margin to control the space between buttons
+        borderRadius: 10,
+        alignItems: 'center',
+        color: 'black',
+      },
 });
 
 export default HousePage;
