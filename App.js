@@ -6,13 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import ModifyHousePage from './pages/ModifyHousePage';
+import ModifyHousePage from './pages/ModifyHousePage.js';
 import LoginPage from'./pages/LoginPage';
 import SpendingPage from'./pages/SpendingPage';
 import HousePage from'./pages/HousePage';
 import ThermostatPage from'./pages/ThermostatPage';
 import SignupPage from './pages/SignupPage';
-
+import GeneralInfoPage from './pages/GeneralInfoPage';
+import HomeEnergyPage from './pages/HomeEnergyPage';
+import householdVehiclesPage from './pages/householdVehiclesPage';
+import wastePage from './pages/wastePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +38,10 @@ export default function App() {
           <Stack.Screen name="House" component={HousePage} />
           <Stack.Screen name="Thermostat" component={ThermostatPage} />
           <Stack.Screen name="Signup" component={SignupPage} />
-
+          <Stack.Screen name="GeneralInfo" component={GeneralInfoPage} />
+          <Stack.Screen name="HomeEnergy" component={HomeEnergyPage} />
+          <Stack.Screen name="HouseholdVehicles" component={householdVehiclesPage} />
+          <Stack.Screen name="Waste" component={wastePage} />
 
         </Stack.Navigator>
       </NavigationContainer>
