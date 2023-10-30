@@ -38,7 +38,6 @@ export default function App() {
           <Stack.Screen name="House" component={HousePage} />
           <Stack.Screen name="Thermostat" component={ThermostatPage} />
           <Stack.Screen name="Signup" component={SignupPage} />
-          <Stack.Screen name="GeneralInfo" component={GeneralInfoPage} />
           <Stack.Screen name="HomeEnergy" component={HomeEnergyPage} />
           <Stack.Screen name="HouseholdVehicles" component={householdVehiclesPage} />
           <Stack.Screen name="Waste" component={wastePage} />
