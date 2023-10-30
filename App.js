@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ModifyHousePage from './pages/ModifyHousePage.js';
+import ModifyHousePage from './pages/ModifyHousePage.js';
 import LoginPage from'./pages/LoginPage';
 import SpendingPage from'./pages/SpendingPage';
 import HousePage from'./pages/HousePage';
@@ -33,7 +34,7 @@ export default function App() {
               title="Info"
             />
           ),}}/>
-          <Stack.Screen name="ModifyHouse" component={ModifyHousePage} />
+          <Stack.Screen name="ModifyHouse" component={ModifyHousePage} options = {{title:"House Settings"}} />
           <Stack.Screen name="Spending" component={SpendingPage}  /> 
           <Stack.Screen name="House" component={HousePage} />
           <Stack.Screen name="Thermostat" component={ThermostatPage} />
