@@ -7,7 +7,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ModifyHousePage from './pages/ModifyHousePage.js';
-import ModifyHousePage from './pages/ModifyHousePage.js';
 import LoginPage from'./pages/LoginPage';
 import SpendingPage from'./pages/SpendingPage';
 import HousePage from'./pages/HousePage';
