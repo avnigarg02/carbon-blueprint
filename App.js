@@ -41,6 +41,8 @@ export default function App() {
           <Stack.Screen name="HomeEnergy" component={HomeEnergyPage} />
           <Stack.Screen name="HouseholdVehicles" component={householdVehiclesPage} />
           <Stack.Screen name="Waste" component={wastePage} />
+          <Stack.Screen name="GeneralInfo" component={GeneralInfoPage} />
+
 
         </Stack.Navigator>
       </NavigationContainer>

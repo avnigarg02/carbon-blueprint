@@ -102,7 +102,7 @@ const houseStyles = StyleSheet.create({
     },
     thisButton: {
         width: 250,
-        backgroundColor: 'lightgreen',
+        backgroundColor: 'darkblue',
         padding: 20,
         marginVertical: -100, // Reduce the vertical margin to control the space between buttons
         borderRadius: 10,

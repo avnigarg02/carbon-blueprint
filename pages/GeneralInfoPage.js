@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { StyleSheet, Button, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import Header from '../components/Header';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Inputs = () => {
+const Inputs = ({navigation}) => {
     const [people, setPeople] = useState('');
     const [zip, setZip] = useState('');
-
+    const handleSubmit = () => {
+    // You can access the form data in formData.people and formData.zip
+    // Perform your storage logic here (e.g., send the data to an API, store it locally, etc.)
+        navigation.navigate('ModifyHouse')
+    };
     const questions = [
         {
             text: 'Number of People in Household',
@@ -46,8 +50,14 @@ const Inputs = () => {
                         maxLength={question.length}
                         style={houseStyles.input}
                     />
+                    
                 </>
             ))}
+            <Button
+                        title="Submit"
+                        onPress={handleSubmit}
+                        color="blue"
+                    />
         </ScrollView>
     )
 }
@@ -65,7 +75,7 @@ const HousePage = ({navigation}) => {
                         House Properties
                     </Text>
 
-                    <Inputs />
+                    <Inputs navigation={navigation} />
 
                 </KeyboardAvoidingView>
 

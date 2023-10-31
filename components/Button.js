@@ -2,7 +2,7 @@ import { StyleSheet, View, Text } from 'react-native';
 const buttonStyles = StyleSheet.create({
         
     button: {
-        backgroundColor: 'lightgreen',
+        backgroundColor: 'darkblue',
         padding: 20,
         margin: 10,
         borderRadius: 10,
@@ -11,7 +11,7 @@ const buttonStyles = StyleSheet.create({
       },
       buttonText: {
         fontSize: 20,
-        color: 'black',
+        color: 'white',
       },
 });
 
