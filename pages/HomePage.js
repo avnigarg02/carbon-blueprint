@@ -29,16 +29,17 @@ const HomePage = ({ navigation }) => {
       <Text style={homeStyles.text}>Hello {name}!</Text>
       <TouchableOpacity
         style={buttonStyles.button}
-        onPress={() => navigation.navigate('House', { username: username })}
+        title="Edit House Info"
+        onPress={() => navigation.navigate('ModifyHouse', { username: username })}
       >
         <Text style={buttonStyles.buttonText}>House</Text>
       </TouchableOpacity>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={buttonStyles.button}
         onPress={() => navigation.navigate('Spending', { username: username })}
       >
         <Text style={buttonStyles.buttonText}>Spending</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <Text style={homeStyles.text}>{emissions}</Text>
     </View>
   );

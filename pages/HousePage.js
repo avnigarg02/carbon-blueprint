@@ -4,28 +4,24 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import buttonStyles from '../components/Button';
 import { useRoute } from "@react-navigation/native"
 
-const HomePage = ({navigation}) => {
+const HomePage = ({ navigation }) => {
     const route = useRoute()
     const username = route.params?.username
 
     return (
         <View style={homeStyles.container}>
-            <TouchableOpacity 
+            <TouchableOpacity
                 style={buttonStyles.button}
-                title = "Edit house info"
-                onPress={() => navigation.navigate('ModifyHouse', {username: username})}
-            
-
+                title="Edit house info"
+                onPress={() => navigation.navigate('ModifyHouse', { username: username })}
             >
                 <Text style={buttonStyles.buttonText}>Edit house info</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity 
+            <TouchableOpacity
                 style={buttonStyles.button}
-                title = "Thermostat"
-                onPress={() => navigation.navigate('Thermostat', {username: username})}
-            
-
+                title="Thermostat"
+                onPress={() => navigation.navigate('Thermostat', { username: username })}
             >
                 <Text style={buttonStyles.buttonText}>Thermostat</Text>
             </TouchableOpacity>
@@ -44,15 +40,15 @@ const homeStyles = StyleSheet.create({
         alignItems: 'center',
     },
     text1: {
-        padding: 40, 
-        fontSize: 30, 
-        color: 'black', 
+        padding: 40,
+        fontSize: 30,
+        color: 'black',
         textAlign: 'center'
     },
     text2: {
-        padding: 20, 
-        fontSize: 24, 
-        color: 'black', 
+        padding: 20,
+        fontSize: 24,
+        color: 'black',
         textAlign: 'center'
     }
 });
