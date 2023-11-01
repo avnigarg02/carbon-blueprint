@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Button, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { ref, set, onValue } from "firebase/database";
 import database from '../config/FirebaseDB';
@@ -11,6 +11,18 @@ const Inputs = ({ navigation }) => {
 
     const [people, setPeople] = useState('');
     const [zip, setZip] = useState('');
+
+    useEffect(() => {
+        const db = database;
+        onValue(ref(db, 'users/' + username + '/general/'), (snapshot) => {
+            if (snapshot.val()?.people) {
+                setPeople(snapshot.val().people)
+            }
+            if (snapshot.val()?.zip) {
+                setZip(snapshot.val().zip)
+            }
+        });
+    }, [people, zip]);
 
     const handleSubmit = () => {
         const db = database;
@@ -26,7 +38,7 @@ const Inputs = ({ navigation }) => {
             } else {
                 alert('Please enter a valid zip code.')
             }
-        
+
         });
     };
 
