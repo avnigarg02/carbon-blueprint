@@ -19,16 +19,16 @@ const Inputs = ({ navigation }) => {
     const db = database;
     onValue(ref(db, 'users/' + username + '/vehicles/'), (snapshot) => {
       if (snapshot.val()?.v1miles) {
-        setv1miles(toString(snapshot.val().v1miles))
+        setv1miles(snapshot.val().v1miles.toString())
       }
       if (snapshot.val()?.v1mpg) {
-        setv1mpg(toString(snapshot.val().v1mpg))
+        setv1mpg(snapshot.val().v1mpg.toString())
       }
       if (snapshot.val()?.v2miles) {
-        setv2miles(toString(snapshot.val().v2miles))
+        setv2miles(snapshot.val().v2miles.toString())
       }
       if (snapshot.val()?.v2mpg) {
-        setv2mpg(toString(snapshot.val().v2mpg))
+        setv2mpg(snapshot.val().v2mpg.toString())
       }
       if (snapshot.val()?.regMaintenance) {
         setRegMaintenance(snapshot.val().regMaintenance)
@@ -47,9 +47,10 @@ const Inputs = ({ navigation }) => {
       v2miles: parseInt(v2miles),
       v2mpg: parseInt(v2mpg),
       regMaintenance: regMaintenance,
-      v_emissions: parseInt(v1miles) * 52 / parseInt(v1mpg) * 10484 + parseInt(v2miles) * 52 / parseInt(v2mpg) * 10484
+      // v_emissions: parseInt(v1miles) * 52 / parseInt(v1mpg) + parseInt(v2miles) * 52 / parseInt(v2mpg) * 10484
+      v_emissions: 15719 - (regMaintenance ? 0 : 1) * 650
     });
-    navigation.navigate('ModifyHouse')
+    navigation.navigate('ModifyHouse', { username: username })
 
   };
 
