@@ -1,20 +1,57 @@
-import React, { useState } from 'react';
-import { StyleSheet,Button, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
-import Header from '../components/Header';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Button, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { ref, set, onValue } from "firebase/database";
+import database from '../config/FirebaseDB';
+import { useRoute } from "@react-navigation/native"
 
-const Inputs = ({navigation}) => {
+const Inputs = ({ navigation }) => {
+
+    const route = useRoute()
+    const username = route.params?.username
+
     const [naturalGasDollars, setnaturalGasDollars] = useState('');
     const [electricityDollars, setElectricityDollars] = useState('');
     const [greenPower, setGreenPower] = useState('');
     const [fuelSpending, setFuelSpending] = useState('');
     const [propaneSpending, setPropaneSpending] = useState('');
+
+    useEffect(() => {
+        const db = database;
+        onValue(ref(db, 'users/' + username + '/energy/'), (snapshot) => {
+            if (snapshot.val()?.naturalGasDollars) {
+                setnaturalGasDollars(snapshot.val().naturalGasDollars.toString())
+            }
+            if (snapshot.val()?.electricityDollars) {
+                setElectricityDollars(snapshot.val().electricityDollars.toString())
+            }
+            if (snapshot.val()?.greenPower) {
+                setGreenPower(snapshot.val().greenPower.toString())
+            }
+            if (snapshot.val()?.fuelSpending) {
+                setFuelSpending(snapshot.val().fuelSpending.toString())
+            }
+            if (snapshot.val()?.propaneSpending) {
+                setPropaneSpending(snapshot.val().propaneSpending.toString())
+            }
+        });
+    }, [naturalGasDollars, electricityDollars, greenPower, fuelSpending, propaneSpending]);
+
     const handleSubmit = () => {
-        // You can access the form data in formData.people and formData.zip
-        // Perform your storage logic here (e.g., send the data to an API, store it locally, etc.)
+        const db = database;
+        set(ref(db, 'users/' + username + '/energy/'), {
+            naturalGasDollars: parseInt(naturalGasDollars),
+            electricityDollars: parseInt(electricityDollars),
+            greenPower: parseInt(greenPower),
+            fuelSpending: parseInt(fuelSpending),
+            propaneSpending: parseInt(propaneSpending),
+            e_emissions: 3071 / 23 * parseInt(naturalGasDollars)
+                + 5455 / 44 * parseInt(electricityDollars) * (1 - parseInt(greenPower) / 100)
+                + 4848 / 72 * parseInt(fuelSpending)
+                + 4848 / 72 * parseInt(propaneSpending)
+        });
         navigation.navigate('ModifyHouse')
-        };
+    };
+
     const questions = [
         {
             text: 'Monthly amount used on natural gas ($)',
@@ -51,14 +88,14 @@ const Inputs = ({navigation}) => {
             onChangeState: setPropaneSpending,
             type: 'number-pad',
         },
-        
+
     ]
 
     return (
         <ScrollView
             indicatorStyle={"navy"}
             style={houseStyles.scrollContainer}
-            // keyboardDismissMode='on-drag'
+        // keyboardDismissMode='on-drag'
         >
             {questions.map((question) => (
                 <>
@@ -76,16 +113,16 @@ const Inputs = ({navigation}) => {
                 </>
             ))}
             <Button
-                        title="Submit"
-                        onPress={handleSubmit}
-                        color="blue"
-                        
-                    />
+                title="Submit"
+                onPress={handleSubmit}
+                color="blue"
+
+            />
         </ScrollView>
     )
 }
 
-const HousePage = ({navigation}) => {
+const HousePage = ({ navigation }) => {
     return (
         <>
             <View style={houseStyles.container}>
@@ -137,7 +174,7 @@ const houseStyles = StyleSheet.create({
         fontSize: 16,
         borderColor: 'black',
         backgroundColor: 'azure',
-        
+
     }
 });
 
