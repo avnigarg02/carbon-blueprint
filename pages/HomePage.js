@@ -11,11 +11,11 @@ const HomePage = ({ navigation }) => {
   const username = route.params?.username
   const [name, setName] = useState('');
   const [emissions, setEmissions] = useState('');
-  calculate(()=>{
-    
-  }
+ 
   
-  )
+  const calculate = () => {
+
+  };
   useEffect(() => {
     const db = database;
     onValue(ref(db, 'users/' + username + '/'), (snapshot) => {
@@ -48,8 +48,6 @@ const HomePage = ({ navigation }) => {
       <TouchableOpacity
         style={buttonStyles.button}
         onPress={() => calculate()}
-
-        
       >
         <Text style={buttonStyles.buttonText}>Calculate</Text>
       </TouchableOpacity>

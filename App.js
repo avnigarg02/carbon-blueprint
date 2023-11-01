@@ -15,10 +15,13 @@ import HomeEnergyPage from './pages/HomeEnergyPage';
 import householdVehiclesPage from './pages/householdVehiclesPage';
 import wastePage from './pages/wastePage';
 import SavingsPage from './pages/SavingsPage';
+import {useNavigation} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const navigation = useNavigation();
+
   return (
 
     <>
@@ -28,8 +31,8 @@ export default function App() {
           <Stack.Screen name="Home" component={HomePage} 
           options={{ title: 'Home', headerLeft: () => (
             <Button
-              onPress={() => alert('Info button test')}
-              title="Info"
+
+              title="Log out"
             />
           ),}}/>
           <Stack.Screen name="ModifyHouse" component={ModifyHousePage} options={{title:"House Settings"}} />
