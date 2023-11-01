@@ -13,14 +13,6 @@ import {
 import { ref, onValue } from "firebase/database";
 import database from '../config/FirebaseDB';
 
-const MyStatusBar = ({ backgroundColor, ...props }) => (
-    <View style={[styles.statusBar, { backgroundColor }]}>
-        <SafeAreaView>
-            <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-        </SafeAreaView>
-    </View>
-);
-
 const LoginPage = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

@@ -4,7 +4,6 @@ import {
     Text,
     TextInput,
     TouchableWithoutFeedback,
-    TouchableOpacity,
     KeyboardAvoidingView,
     Platform,
     Keyboard,
@@ -13,17 +12,6 @@ import {
 } from 'react-native';
 import { ref, set } from "firebase/database";
 import database from '../config/FirebaseDB';
-
-const MyStatusBar = ({backgroundColor, ...props}) => (
-    <View style={[styles.statusBar, { backgroundColor }]}>
-
-
-      <SafeAreaView>
-        <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-      </SafeAreaView>
-    </View>
-  );
-
 
 const SignupPage = ({ navigation }) => {
     const [name, setName] = useState('');
@@ -42,7 +30,7 @@ const SignupPage = ({ navigation }) => {
     }
 
     return (
-   
+
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={loginStyles.container}>
 
@@ -85,15 +73,15 @@ const SignupPage = ({ navigation }) => {
                     <Button
                         title="Submit"
                         onPress={handleSubmit}
-                    />   
-                          
+                    />
+
 
 
                 </KeyboardAvoidingView>
-                
+
             </View>
         </TouchableWithoutFeedback>
-        
+
     );
 }
 
