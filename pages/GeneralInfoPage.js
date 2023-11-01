@@ -34,7 +34,7 @@ const Inputs = ({ navigation }) => {
                     zip: zip,
                     e_factor: snapshot.val()
                 });
-                navigation.navigate('ModifyHouse')
+                navigation.navigate('ModifyHouse', { username: username })
             } else {
                 alert('Please enter a valid zip code.')
             }
