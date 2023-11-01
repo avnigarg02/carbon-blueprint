@@ -4,10 +4,10 @@
     "slug": "cong-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./logo/icon.jpeg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./logo/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

@@ -16,7 +16,7 @@ const Inputs = ({ navigation }) => {
         const db = database;
         onValue(ref(db, 'users/' + username + '/general/'), (snapshot) => {
             if (snapshot.val()?.people) {
-                setPeople(snapshot.val().people)
+                setPeople(snapshot.val().people.toString())
             }
             if (snapshot.val()?.zip) {
                 setZip(snapshot.val().zip)
@@ -27,10 +27,9 @@ const Inputs = ({ navigation }) => {
     const handleSubmit = () => {
         const db = database;
         onValue(ref(db, 'data/zip/' + zip), (snapshot) => {
-            console.log(snapshot.val())
             if (snapshot.val()) {
                 set(ref(db, 'users/' + username + '/general/'), {
-                    people: people,
+                    people: parseInt(people),
                     zip: zip,
                     e_factor: snapshot.val()
                 });

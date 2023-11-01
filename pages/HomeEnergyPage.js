@@ -49,7 +49,7 @@ const Inputs = ({ navigation }) => {
                 + 4848 / 72 * parseInt(fuelSpending)
                 + 4848 / 72 * parseInt(propaneSpending)
         });
-        navigation.navigate('ModifyHouse')
+        navigation.navigate('ModifyHouse', { username: username })
     };
 
     const questions = [

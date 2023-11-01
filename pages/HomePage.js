@@ -23,7 +23,7 @@ const HomePage = ({ navigation }) => {
       if (snapshot.val()?.emissions) {
         setEmissions('Your total CO2 emissions:' + snapshot.val().emissions)
       } else {
-        setEmissions('Please enter your information in the House tab')
+        setEmissions('Please enter your information in the House tab and press Calculate')
       }
     });
   }, [name, emissions]);

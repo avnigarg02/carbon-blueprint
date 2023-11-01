@@ -34,7 +34,7 @@ const Inputs = ({ navigation }) => {
         setRegMaintenance(snapshot.val().regMaintenance)
       }
     });
-  }, [v1miles, v1mpg, v2miles, v2mpg]);
+  }, [v1miles, v1mpg, v2miles, v2mpg, regMaintenance]);
 
   const toggleSwitch = () => setRegMaintenance(previousState => !previousState);
 
