@@ -104,7 +104,6 @@ const HomePage = ({navigation}) => {
             <TextInput  keyboardType="number-pad" style={houseStyles.input} placeholder="#" />
             
             
-            <Switch/>
             <Text>{'\n'}</Text>
         </View>
         <View style={houseStyles.inputContainer}>
