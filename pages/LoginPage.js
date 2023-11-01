@@ -4,34 +4,41 @@ import {
     Text,
     TextInput,
     TouchableWithoutFeedback,
-    TouchableOpacity,
     KeyboardAvoidingView,
     Platform,
     Keyboard,
     StyleSheet,
     Button
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Header from '../components/Header';
+import { ref, onValue } from "firebase/database";
+import database from '../config/FirebaseDB';
 
-const MyStatusBar = ({backgroundColor, ...props}) => (
+const MyStatusBar = ({ backgroundColor, ...props }) => (
     <View style={[styles.statusBar, { backgroundColor }]}>
-
-
-      <SafeAreaView>
-        <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-      </SafeAreaView>
+        <SafeAreaView>
+            <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+        </SafeAreaView>
     </View>
-  );
-
+);
 
 const LoginPage = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleLogin = () => {
+        const db = database;
+        onValue(ref(db, 'users/'), (snapshot) => {
+            if (snapshot.val()?.[username]?.password === password) {
+                navigation.navigate('Home', { username: username })
+            } else {
+                setError('Please enter a valid username and password combination.')
+            }
+        });
+    }
 
     return (
-   
+
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={loginStyles.container}>
 
@@ -47,6 +54,7 @@ const LoginPage = ({ navigation }) => {
                         placeholder='Username'
                         onChangeText={setUsername}
                         value={username}
+                        autoCapitalize='none'
                     />
                     <TextInput
                         style={loginStyles.input}
@@ -54,22 +62,24 @@ const LoginPage = ({ navigation }) => {
                         onChangeText={setPassword}
                         value={password}
                         secureTextEntry={true}
+                        autoCapitalize='none'
                     />
+                    <Text style={loginStyles.errorText}>{error}</Text>
                     <Button
-                        title="Submit"
-                        onPress={() => navigation.navigate('Home')}
-                    />   
+                        title="Login"
+                        onPress={handleLogin}
+                    />
                     <Button
                         title="Sign up"
                         onPress={() => navigation.navigate('Signup')}
-                    />       
+                    />
 
 
                 </KeyboardAvoidingView>
-                
+
             </View>
         </TouchableWithoutFeedback>
-        
+
     );
 }
 
@@ -89,6 +99,12 @@ const loginStyles = StyleSheet.create({
     loginText: {
         fontSize: 30,
         color: 'black',
+        textAlign: 'center',
+        paddingBottom: 20
+    },
+    errorText: {
+        fontSize: 15,
+        color: 'red',
         textAlign: 'center',
         paddingBottom: 20
     },
