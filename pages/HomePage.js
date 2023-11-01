@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Image,StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import buttonStyles from '../components/Button';
 import { ref, onValue } from "firebase/database";
 import database from '../config/FirebaseDB';
@@ -30,6 +30,11 @@ const HomePage = ({ navigation }) => {
 
   return (
     <View style={homeStyles.container}>
+
+      <Image
+        style={styles.tinyLogo}
+        source={require('../Carbon-Blueprint-logos/Carbon-Blueprint-logos_transparent.png')}
+      />
       <Text style={homeStyles.text}>Hello {name}!</Text>
       <TouchableOpacity
         style={buttonStyles.button}
@@ -80,5 +85,19 @@ const homeStyles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+  },
+  stretch: {
+    width: 5,
+    height: 20,
+    resizeMode: 'stretch',
+  },
+  
+  tinyLogo: {
+    width: 300,
+    height: 250,
+  },
+});
 export default HomePage;
