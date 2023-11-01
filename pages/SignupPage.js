@@ -11,9 +11,8 @@ import {
     StyleSheet,
     Button
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Header from '../components/Header';
+import { ref, set } from "firebase/database";
+import database from '../config/FirebaseDB';
 
 const MyStatusBar = ({backgroundColor, ...props}) => (
     <View style={[styles.statusBar, { backgroundColor }]}>
@@ -27,9 +26,20 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 
 
 const SignupPage = ({ navigation }) => {
+    const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleSubmit = () => {
+        const db = database;
+        set(ref(db, 'users/' + username + '/'), {
+            name: name,
+            email: email,
+            password: password
+        });
+        navigation.navigate('Login')
+    }
 
     return (
    
@@ -45,15 +55,24 @@ const SignupPage = ({ navigation }) => {
                     </Text>
                     <TextInput
                         style={loginStyles.input}
+                        placeholder='Name'
+                        onChangeText={setName}
+                        value={name}
+                    />
+                    <TextInput
+                        style={loginStyles.input}
                         placeholder='Username'
                         onChangeText={setUsername}
                         value={username}
+                        autoCapitalize='none'
                     />
                     <TextInput
                         style={loginStyles.input}
                         placeholder='Email'
                         onChangeText={setEmail}
                         value={email}
+                        autoCapitalize='none'
+                        keyboardType='email-address'
                     />
                     <TextInput
                         style={loginStyles.input}
@@ -61,10 +80,11 @@ const SignupPage = ({ navigation }) => {
                         onChangeText={setPassword}
                         value={password}
                         secureTextEntry={true}
+                        autoCapitalize='none'
                     />
                     <Button
                         title="Submit"
-                        onPress={() => navigation.navigate('Login')}
+                        onPress={handleSubmit}
                     />   
                           
 
