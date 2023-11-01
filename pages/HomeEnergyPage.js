@@ -137,6 +137,7 @@ const houseStyles = StyleSheet.create({
         fontSize: 16,
         borderColor: 'black',
         backgroundColor: 'azure',
+        
     }
 });
 

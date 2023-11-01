@@ -34,6 +34,13 @@ const HomePage = ({ navigation }) => {
       >
         <Text style={buttonStyles.buttonText}>House</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={buttonStyles.button}
+        
+        onPress={() => navigation.navigate('Improve', { username: username })}
+      >
+        <Text style={buttonStyles.buttonText}>Improve</Text>
+      </TouchableOpacity>
       {/* <TouchableOpacity
         style={buttonStyles.button}
         onPress={() => navigation.navigate('Spending', { username: username })}

@@ -8,7 +8,7 @@ import ModifyHousePage from './pages/ModifyHousePage.js';
 import LoginPage from'./pages/LoginPage';
 import SpendingPage from'./pages/SpendingPage';
 import HousePage from'./pages/HousePage';
-import ThermostatPage from'./pages/ThermostatPage';
+import ImprovePage from'./pages/ImprovePage';
 import SignupPage from './pages/SignupPage';
 import GeneralInfoPage from './pages/GeneralInfoPage';
 import HomeEnergyPage from './pages/HomeEnergyPage';
@@ -34,7 +34,7 @@ export default function App() {
           <Stack.Screen name="ModifyHouse" component={ModifyHousePage} options={{title:"House Settings"}} />
           <Stack.Screen name="Spending" component={SpendingPage} options={{title:"Spending"}} /> 
           <Stack.Screen name="House" component={HousePage} options={{title:"House"}} />
-          <Stack.Screen name="Thermostat" component={ThermostatPage} options={{title:"Thermostat"}} />
+          <Stack.Screen name="Improve" component={ImprovePage} options={{title:"Improve"}} />
           <Stack.Screen name="Signup" component={SignupPage} options={{title:"Signup"}} />
           <Stack.Screen name="HomeEnergy" component={HomeEnergyPage} options={{title:"Home Energy"}} />
           <Stack.Screen name="HouseholdVehicles" component={householdVehiclesPage} options={{title:"Household Vehicles"}} />
