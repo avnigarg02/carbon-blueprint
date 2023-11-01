@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform ,TouchableOpacity} from 'react-native';
-import Header from '../components/Header';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform, TouchableOpacity } from 'react-native';
 import buttonStyles from '../components/Button';
+import { useRoute } from "@react-navigation/native"
 
 
-const HousePage = ({navigation}) => {
+const HousePage = ({ navigation }) => {
+
+    const route = useRoute()
+    const username = route.params?.username
+
     return (
         <>
             <View style={houseStyles.container}>
@@ -20,39 +22,39 @@ const HousePage = ({navigation}) => {
                     </Text>
                     <View style={houseStyles.buttonContainer}>
 
-                    <TouchableOpacity
-                style={houseStyles.thisButton}
-                title="General info"
-                onPress={() => navigation.navigate('GeneralInfo')}
-                >
-                <Text style={buttonStyles.buttonText}>General info</Text>
-                </TouchableOpacity>
+                        <TouchableOpacity
+                            style={houseStyles.thisButton}
+                            title="General info"
+                            onPress={() => navigation.navigate('GeneralInfo', { username: username })}
+                        >
+                            <Text style={buttonStyles.buttonText}>General info</Text>
+                        </TouchableOpacity>
 
-                <TouchableOpacity
-                style={houseStyles.thisButton}
-                title="Household vehicles"
-                onPress={() => navigation.navigate('HouseholdVehicles')}
-                >
-                <Text style={buttonStyles.buttonText}>Household vehicles</Text>
-                </TouchableOpacity>
+                        <TouchableOpacity
+                            style={houseStyles.thisButton}
+                            title="Household vehicles"
+                            onPress={() => navigation.navigate('HouseholdVehicles', { username: username })}
+                        >
+                            <Text style={buttonStyles.buttonText}>Household vehicles</Text>
+                        </TouchableOpacity>
 
-                <TouchableOpacity
-                style={houseStyles.thisButton}
-                title="Home energy"
-                onPress={() => navigation.navigate('HomeEnergy')}
-                >
-                <Text style={buttonStyles.buttonText}>Home energy</Text>
-                </TouchableOpacity>
+                        <TouchableOpacity
+                            style={houseStyles.thisButton}
+                            title="Home energy"
+                            onPress={() => navigation.navigate('HomeEnergy', { username: username })}
+                        >
+                            <Text style={buttonStyles.buttonText}>Home energy</Text>
+                        </TouchableOpacity>
 
-                <TouchableOpacity
-                style={houseStyles.thisButton}
-                title="Waste"
-                onPress={() => navigation.navigate('Waste')}
-                >
-                <Text style={buttonStyles.buttonText}>Waste</Text>
-                </TouchableOpacity>
-                </View>                   
-                                    
+                        <TouchableOpacity
+                            style={houseStyles.thisButton}
+                            title="Waste"
+                            onPress={() => navigation.navigate('Waste')}
+                        >
+                            <Text style={buttonStyles.buttonText}>Waste</Text>
+                        </TouchableOpacity>
+                    </View>
+
 
 
 
@@ -108,7 +110,7 @@ const houseStyles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
         color: 'black',
-      },
+    },
 });
 
 export default HousePage;

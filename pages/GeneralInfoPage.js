@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
 import { StyleSheet, Button, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
-import Header from '../components/Header';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ref, set, onValue } from "firebase/database";
+import database from '../config/FirebaseDB';
+import { useRoute } from "@react-navigation/native"
 
-const Inputs = ({navigation}) => {
+const Inputs = ({ navigation }) => {
+
+    const route = useRoute()
+    const username = route.params?.username
+
     const [people, setPeople] = useState('');
     const [zip, setZip] = useState('');
+
     const handleSubmit = () => {
-    // You can access the form data in formData.people and formData.zip
-    // Perform your storage logic here (e.g., send the data to an API, store it locally, etc.)
-        navigation.navigate('ModifyHouse')
+        const db = database;
+        onValue(ref(db, 'data/zip/' + zip), (snapshot) => {
+            console.log(snapshot.val())
+            if (snapshot.val()) {
+                set(ref(db, 'users/' + username + '/general/'), {
+                    people: people,
+                    zip: zip,
+                    e_factor: snapshot.val()
+                });
+                navigation.navigate('ModifyHouse')
+            } else {
+                alert('Please enter a valid zip code.')
+            }
+        
+        });
     };
+
     const questions = [
         {
             text: 'Number of People in Household',
@@ -28,14 +46,14 @@ const Inputs = ({navigation}) => {
             type: 'number-pad',
             length: 5,
         },
-        
+
     ]
 
     return (
         <ScrollView
             indicatorStyle={"navy"}
             style={houseStyles.scrollContainer}
-            // keyboardDismissMode='on-drag'
+        // keyboardDismissMode='on-drag'
         >
             {questions.map((question) => (
                 <>
@@ -50,19 +68,19 @@ const Inputs = ({navigation}) => {
                         maxLength={question.length}
                         style={houseStyles.input}
                     />
-                    
+
                 </>
             ))}
             <Button
-                        title="Submit"
-                        onPress={handleSubmit}
-                        color="blue"
-                    />
+                title="Submit"
+                onPress={handleSubmit}
+                color="blue"
+            />
         </ScrollView>
     )
 }
 
-const HousePage = ({navigation}) => {
+const HousePage = ({ navigation }) => {
     return (
         <>
             <View style={houseStyles.container}>

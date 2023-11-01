@@ -2,13 +2,18 @@ import { StyleSheet, View, Button, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import buttonStyles from '../components/Button';
+import { useRoute } from "@react-navigation/native"
+
 const HomePage = ({navigation}) => {
+    const route = useRoute()
+    const username = route.params?.username
+
     return (
         <View style={homeStyles.container}>
             <TouchableOpacity 
                 style={buttonStyles.button}
                 title = "Edit house info"
-                onPress={() => navigation.navigate('ModifyHouse')}
+                onPress={() => navigation.navigate('ModifyHouse', {username: username})}
             
 
             >
@@ -18,7 +23,7 @@ const HomePage = ({navigation}) => {
             <TouchableOpacity 
                 style={buttonStyles.button}
                 title = "Thermostat"
-                onPress={() => navigation.navigate('Thermostat')}
+                onPress={() => navigation.navigate('Thermostat', {username: username})}
             
 
             >

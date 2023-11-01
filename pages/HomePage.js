@@ -17,7 +17,7 @@ const HomePage = ({ navigation }) => {
     onValue(ref(db, 'users/' + username + '/'), (snapshot) => {
       setName(snapshot.val()?.name)
       if (snapshot.val()?.emissions) {
-        setEmissions('Your CO2 emissions:' + snapshot.val().emissions)
+        setEmissions('Your total CO2 emissions:' + snapshot.val().emissions)
       } else {
         setEmissions('Please enter your information in the House tab')
       }
@@ -29,17 +29,16 @@ const HomePage = ({ navigation }) => {
       <Text style={homeStyles.text}>Hello {name}!</Text>
       <TouchableOpacity
         style={buttonStyles.button}
-        onPress={() => navigation.navigate('House')}
+        onPress={() => navigation.navigate('House', { username: username })}
       >
         <Text style={buttonStyles.buttonText}>House</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={buttonStyles.button}
-        onPress={() => navigation.navigate('Spending')}
+        onPress={() => navigation.navigate('Spending', { username: username })}
       >
         <Text style={buttonStyles.buttonText}>Spending</Text>
       </TouchableOpacity>
-      {/* <Text style={homeStyles.text}>Your total CO2 usage:</Text> */}
       <Text style={homeStyles.text}>{emissions}</Text>
     </View>
   );
