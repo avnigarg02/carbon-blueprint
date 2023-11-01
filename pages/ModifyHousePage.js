@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, ScrollView, Platform, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
 import buttonStyles from '../components/Button';
 import { useRoute } from "@react-navigation/native"
 
@@ -49,15 +49,11 @@ const HousePage = ({ navigation }) => {
                         <TouchableOpacity
                             style={houseStyles.thisButton}
                             title="Waste"
-                            onPress={() => navigation.navigate('Waste')}
+                            onPress={() => navigation.navigate('Waste', { username: username })}
                         >
                             <Text style={buttonStyles.buttonText}>Waste</Text>
                         </TouchableOpacity>
                     </View>
-
-
-
-
 
                 </KeyboardAvoidingView>
 
