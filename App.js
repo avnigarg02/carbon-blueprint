@@ -14,6 +14,7 @@ import GeneralInfoPage from './pages/GeneralInfoPage';
 import HomeEnergyPage from './pages/HomeEnergyPage';
 import householdVehiclesPage from './pages/householdVehiclesPage';
 import wastePage from './pages/wastePage';
+import SavingsPage from './pages/SavingsPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +41,7 @@ export default function App() {
           <Stack.Screen name="HouseholdVehicles" component={householdVehiclesPage} options={{title:"Household Vehicles"}} />
           <Stack.Screen name="Waste" component={wastePage} options={{title:"Waste"}} />
           <Stack.Screen name="GeneralInfo" component={GeneralInfoPage} options={{title:"General Info"}} />
+          <Stack.Screen name="Savings" component={SavingsPage} options={{title:"Savings"}} />
 
 
         </Stack.Navigator>

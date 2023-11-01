@@ -11,7 +11,11 @@ const HomePage = ({ navigation }) => {
   const username = route.params?.username
   const [name, setName] = useState('');
   const [emissions, setEmissions] = useState('');
-
+  calculate(()=>{
+    
+  }
+  
+  )
   useEffect(() => {
     const db = database;
     onValue(ref(db, 'users/' + username + '/'), (snapshot) => {
@@ -32,15 +36,25 @@ const HomePage = ({ navigation }) => {
         title="Edit House Info"
         onPress={() => navigation.navigate('ModifyHouse', { username: username })}
       >
-        <Text style={buttonStyles.buttonText}>House</Text>
+        <Text style={buttonStyles.buttonText}>  House  </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={buttonStyles.button}
         
         onPress={() => navigation.navigate('Improve', { username: username })}
       >
-        <Text style={buttonStyles.buttonText}>Improve</Text>
+        <Text style={buttonStyles.buttonText}> Improve </Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={buttonStyles.button}
+        onPress={() => calculate()}
+
+        
+      >
+        <Text style={buttonStyles.buttonText}>Calculate</Text>
+      </TouchableOpacity>
+      
+      
       {/* <TouchableOpacity
         style={buttonStyles.button}
         onPress={() => navigation.navigate('Spending', { username: username })}
@@ -48,6 +62,8 @@ const HomePage = ({ navigation }) => {
         <Text style={buttonStyles.buttonText}>Spending</Text>
       </TouchableOpacity> */}
       <Text style={homeStyles.text}>{emissions}</Text>
+
+      
     </View>
   );
 }
