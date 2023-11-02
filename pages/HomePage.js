@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Image,StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import buttonStyles from '../components/Button';
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, set } from "firebase/database";
 import database from '../config/FirebaseDB';
 import { useRoute } from "@react-navigation/native"
 
@@ -9,24 +9,40 @@ const HomePage = ({ navigation }) => {
 
   const route = useRoute()
   const username = route.params?.username
+
   const [name, setName] = useState('');
   const [emissions, setEmissions] = useState('');
- 
-  
-  const calculate = () => {
 
-  };
   useEffect(() => {
     const db = database;
     onValue(ref(db, 'users/' + username + '/'), (snapshot) => {
       setName(snapshot.val()?.name)
       if (snapshot.val()?.emissions) {
-        setEmissions('Your total CO2 emissions:' + snapshot.val().emissions)
+        const totalEmissions = snapshot.val().emissions.total.toFixed(0);
+        setEmissions('Your total CO2 emissions: \n' + totalEmissions.toString() + ' lbs/year');
       } else {
         setEmissions('Please enter your information in the House tab and press Calculate')
       }
     });
   }, [name, emissions]);
+
+
+  const calculate = () => {
+    let total = 0
+    const db = database;
+    onValue(ref(db, 'users/' + username + '/energy/'), (snapshot) => {
+      total += snapshot.val()?.e_emissions
+    });
+    onValue(ref(db, 'users/' + username + '/vehicles/'), (snapshot) => {
+      total += snapshot.val()?.v_emissions
+    });
+    onValue(ref(db, 'users/' + username + '/waste/'), (snapshot) => {
+      total += snapshot.val()?.w_emissions
+    });
+    set(ref(db, 'users/' + username + '/emissions/'), {
+      total: total
+    });
+  };
 
   return (
     <View style={homeStyles.container}>
@@ -45,19 +61,19 @@ const HomePage = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={buttonStyles.button}
-        
+
         onPress={() => navigation.navigate('Improve', { username: username })}
       >
         <Text style={buttonStyles.buttonText}> Improve </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={buttonStyles.button}
-        onPress={() => calculate()}
+        onPress={calculate}
       >
         <Text style={buttonStyles.buttonText}>Calculate</Text>
       </TouchableOpacity>
-      
-      
+
+
       {/* <TouchableOpacity
         style={buttonStyles.button}
         onPress={() => navigation.navigate('Spending', { username: username })}
@@ -66,7 +82,7 @@ const HomePage = ({ navigation }) => {
       </TouchableOpacity> */}
       <Text style={homeStyles.text}>{emissions}</Text>
 
-      
+
     </View>
   );
 }
@@ -94,7 +110,7 @@ const styles = StyleSheet.create({
     height: 20,
     resizeMode: 'stretch',
   },
-  
+
   tinyLogo: {
     width: 300,
     height: 250,

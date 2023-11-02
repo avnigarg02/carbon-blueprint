@@ -92,33 +92,37 @@ const Inputs = ({ navigation }) => {
     ]
 
     return (
-        <ScrollView
-            indicatorStyle={"navy"}
-            style={houseStyles.scrollContainer}
-        // keyboardDismissMode='on-drag'
-        >
-            {questions.map((question) => (
-                <>
-                    <Text key={question.id} style={houseStyles.itemText}>
-                        {question.text + '\n'}
-                    </Text>
-                    <TextInput
-                        key={question.id + 'Input'}
-                        value={question.state}
-                        onChangeText={question.onChangeState}
-                        keyboardType={question.type}
-                        maxLength={question.length}
-                        style={houseStyles.input}
-                    />
-                </>
-            ))}
+        <KeyboardAvoidingView
+            style={houseStyles.keycontain}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'} >
+            <ScrollView
+                indicatorStyle={"navy"}
+                style={houseStyles.scrollContainer}
+            // keyboardDismissMode='on-drag'
+            >
+                {questions.map((question) => (
+                    <>
+                        <Text key={question.id} style={houseStyles.itemText}>
+                            {question.text + '\n'}
+                        </Text>
+                        <TextInput
+                            key={question.id + 'Input'}
+                            value={question.state}
+                            onChangeText={question.onChangeState}
+                            keyboardType={question.type}
+                            maxLength={question.length}
+                            style={houseStyles.input}
+                        />
+                    </>
+                ))}
+            </ScrollView>
             <Button
                 title="Submit"
                 onPress={handleSubmit}
                 color="blue"
 
             />
-        </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -149,8 +153,12 @@ const houseStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'lightblue',
     },
+    keycontain: {
+        flex: 0.99,
+        // backgroundColor: 'lightblue',
+    },
     inner: {
-        flex: 0.98,
+        flex: 1,
     },
     scrollContainer: {
         padding: 20,
